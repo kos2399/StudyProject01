@@ -3,6 +3,7 @@ using System.Collections;
 
 public class TestS : MonoBehaviour {
 
+    string aa;
 	string Name;
 	string ID;
 	int i;
