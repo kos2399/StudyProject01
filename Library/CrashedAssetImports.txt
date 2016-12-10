@@ -1,1 +1,0 @@
-Assets/SimpleItems/Models/Items_WoodPlank_01.fbx
