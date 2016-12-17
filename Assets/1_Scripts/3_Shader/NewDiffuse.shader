@@ -1,7 +1,7 @@
 ﻿Shader "Custom/NewDiffuse" {
     Properties {
 		_Color("Color",Color) = (1.0,1.0,1.0,1.0)
-        _DiffuseTex ("Diffuse Texture", 2D) = "white" {}
+		_MainTex ("Diffuse Texture",2D) = "White"{}
 		_AmbientPow("AmbientPow",float) = 0
     }
  //// https://forum.unity3d.com/threads/adding-lighting_coords-makes-unity-3-comment-out-subshader-as-2-x-style.74103///
@@ -11,7 +11,7 @@
             Name "ContentBase"
             Tags {"LightMode" = "ForwardBase"}
 			
-			  LOD 100
+			  LOD 100 
             CGPROGRAM
                 #pragma vertex vert
                 #pragma fragment frag
@@ -43,7 +43,7 @@
                     return o;
                 }
                
-                sampler2D _DiffuseTex;
+                sampler2D _MainTex;
              
               uniform float _AmbientPow;
                uniform float4 _Color;
@@ -53,7 +53,7 @@
                 {
               
 					float3 diffuse = saturate(i.mDiffuse);
-					float3 albedo =  tex2D(_DiffuseTex, i.uv).rgb;
+					float3 albedo =  tex2D(_MainTex, i.uv).rgb;
                     float atten = LIGHT_ATTENUATION(i);
 					if(diffuse.x <0.5f)
 					{
@@ -107,17 +107,17 @@
                     return o;
                 }
                
-                sampler2D _DiffuseTex;
+                sampler2D _MainTex;
              
-              uniform float _AmbientPow;
-               uniform float4 _Color;
+                uniform float _AmbientPow;
+                uniform float4 _Color;
                 float4 _LightColor0;
  
                 float4 frag(v2f i) : COLOR
                 {
               
 					float3 diffuse = saturate(i.mDiffuse);
-					float3 albedo =  tex2D(_DiffuseTex, i.uv).rgb;
+					float3 albedo =  tex2D(_MainTex, i.uv).rgb;
                     float atten = LIGHT_ATTENUATION(i);
 					if(diffuse.x <0.5f)
 					{
@@ -163,4 +163,5 @@
             ENDCG
         }
     }
+	//  Fallback "Diffuse"
 }
